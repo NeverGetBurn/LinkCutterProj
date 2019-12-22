@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Link>
+@{
+    ViewData["Title"] = "Link Page";
+}
+
+@*<div>
+    <a asp-controller="Link" asp-action="LinkEdit">Новая ссылка</a>
+</div>*@
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Исходная ссылка</th>
+            <th scope="col">Усеченная ссылка</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Кол-во переходов</th>
+            <th scope="col">Удалить ссылку</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Link link in Model)
+        {
+            <tr>
+                <td scope="row" class="align-middle">
+                    @link.LongName
+                </td>
+                <td class="align-middle">
+                    <a asp-controller="Link" asp-action="LinkRedirect" asp-route-id="@link.Id">@link.ShortName</a>
+                </td>
+                <td class="align-middle">
+                    @link.CreationTime
+                </td>
+                <td class="align-middle">
+                    @link.RedirectCount
+                </td>
+                <td class="align-middle">
+                    <form method="post" asp-controller="Link" asp-action="LinkDelete">
+                        <input type="hidden" name="Id" value="@link.Id"/>
+                        <button type="submit" class="btn btn-link">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

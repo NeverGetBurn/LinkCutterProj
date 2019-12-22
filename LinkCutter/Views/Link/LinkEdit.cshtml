@@ -1,0 +1,26 @@
+﻿@model Link
+@{
+    ViewData["Title"] = "Link Page";
+}
+
+<div class="alert-danger" role="alert">
+    @ViewBag.Error
+</div>
+<form asp-controller="Link" asp-action="LinkEdit" asp-antiforgery="true" method="post" class="validation-summary-errors">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+    <div class="form-group">
+        <label for="LongName"></label>
+        <input type="text" asp-for="LongName" class="form-control input-validation-error" placeholder="Введите вашу ссылку" required/> 
+        <span asp-validation-for="LongName" class="field-validation-error"></span>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <button type="submit" class="btn btn-secondary">Записать</button>
+        </div>
+    </div>
+</form>
+
